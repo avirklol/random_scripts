@@ -10,7 +10,7 @@ The script defaults to the Library folder as the path and 10 results as num_resu
 To adjust the path and the num_results:
 
 ```
-run large_file_finder.py some/path --num_results 6
+run large_file_finder.py <some/path> --num_results <some_integer>
 ```
 
 ### Features in Progress
