@@ -14,4 +14,4 @@ run large_file_finder.py <some/path> --num_results <some_integer>
 ```
 
 ### Features in Progress
-- attempting to implement the script into a GUI for a better UX
+- attempting to implement the script into a GUI for a better UX by leveraging Textual and Rich
