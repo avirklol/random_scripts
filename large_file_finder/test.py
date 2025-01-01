@@ -1,7 +1,7 @@
 from textual.app import App, ComposeResult
 from textual.widgets import Header, Footer, Input, Label, RichLog, LoadingIndicator
 from textual.containers import VerticalGroup, HorizontalGroup, VerticalScroll
-# from find_largest_folders_and_files import analyze_path
+from find_largest_folders_and_files import analyze_path
 
 class Widgets(VerticalGroup):
 
