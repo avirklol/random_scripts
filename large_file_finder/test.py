@@ -1,6 +1,8 @@
 import os
 import platform
 import subprocess
+import tkinter as tk
+from tkinter import filedialog
 from pathlib import Path
 from textual.app import App, ComposeResult
 from textual.widgets import Header, Footer, Input, Label, RichLog, LoadingIndicator, Button
@@ -11,7 +13,11 @@ from large_file_finder import analyze_path
 
 config_path = Path.home()/'Library'
 
-# screen_size = Size(40, 60)
+def select_folder():
+    root = tk.Tk()
+    root.withdraw()
+    folder_path = filedialog.askdirectory()
+    return Path(folder_path) if folder_path else None
 
 class FolderLog(RichLog):
 
@@ -35,17 +41,32 @@ class Output(Vertical):
         yield FolderLog()
         yield FileLog()
 
+class Config(Horizontal):
+
+    def on_button_press(self, event: Button.Pressed) -> None:
+
+        global config_path
+
+        if event.button.id == "path_select":
+            config_path = select_folder()
+
+    def compose(self) -> ComposeResult:
+        yield Button("Select Path", id="path_select")
+        yield Label(f"Path: {config_path}", id="path")
+
+class Query(Vertical):
+
+    def compose(self) -> ComposeResult:
+        yield RichLog(id="config_log")
+        yield Input(placeholder=">>>", id="query_input")
+
 class ConfigQuery(Vertical):
 
     BORDER_TITLE = "CONFIG AND QUERY"
 
     def compose(self) -> ComposeResult:
-        with Horizontal(id="config_query_header"):
-            yield Button("Select Path", id="path_select")
-            yield Label(f"Path: {config_path}", id="path")
-        with Vertical(id="config_query_body"):
-            yield RichLog(id="config_log")
-            yield Input(placeholder=">>>", id="query_input")
+        yield(Config(id="config"))
+        yield(Query(id="query"))
 
 class Widgets(Vertical):
 
@@ -78,4 +99,3 @@ class _app(App):
 if __name__ == '__main__':
     app = _app()
     app.run()
-x
