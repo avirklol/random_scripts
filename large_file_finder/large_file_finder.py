@@ -136,4 +136,5 @@ def analyze_path(config_path: Path, num_results: int):
     if run_again:
         analyze_path()
 
-analyze_path()
+# if __name__ == '__main__':
+#     analyze_path()
