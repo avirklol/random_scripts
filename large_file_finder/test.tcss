@@ -44,7 +44,7 @@ $border: round darkgreen 50%;
 #config_query {
   layout: grid;
   grid-size: 1 2;
-  grid-rows: 0.1fr 1fr;
+  grid-rows: 0.15fr 2fr;
   column-span: 2;
   height: auto;
 
@@ -55,11 +55,12 @@ $border: round darkgreen 50%;
   border-title-align: right;
 }
 
-#config_query_header {
+#config {
   layout: grid;
   grid-size: 2;
   grid-columns: 0.2fr 1fr;
   height: 100%;
+  background: $panel;
 }
 
 #path_select {
@@ -74,7 +75,7 @@ $border: round darkgreen 50%;
 #config_log {
 } */
 
-#config_query_body > Input {
+#query > Input {
   width: 100%;
   height: auto;
 }
